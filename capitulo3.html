@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 3 - MegaCorp</title>
+    <link rel="stylesheet" href="Css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+</head>
+<body id = "Capitulo3">
+<div id="app" @keydown.enter="nextDialogue" tabindex="0">
+    <div id="chapter-container">
+        <h2>Capítulo 3: O Pesadelo das Cores</h2>
+
+        <div id="narrator-box" v-if="!isChallengeActive && !isCharacterDialogueEnd">
+            <p id="narrator-text">{{ currentNarratorDialogue }}</p>
+        </div>
+
+        <div id="character-box" v-if="!isChallengeActive && isCharacterDialogueEnd">
+            <p id="character-dialogue"><strong>Sr. Harrison:</strong> "{{ currentHarrisonDialogue }}"</p>
+        </div>
+
+        <div id="character-box" v-if="isChallengeActive">
+            <p id="character-dialogue"><strong>Ethan:</strong> "{{ currentEthanDialogue }}"</p>
+        </div>
+
+        <div id="challenge-box" v-if="isChallengeActive">
+            <p><strong>Desafio:</strong> Corrigir a cor de fundo do botão abaixo.</p>
+            <div id="code-box">
+                <pre>button { background-color: #0000ff; }</pre>
+            </div>
+            <!-- Opções de resposta -->
+            <div>
+                <button @click="checkAnswer('button { background-color: #00ff00; }')">Opção 1: button { background-color: #00ff00; }</button>
+                <button @click="checkAnswer('button { background-color: #0000ff; }')">Opção 2: button { background-color: #0000ff; }</button>
+                <button @click="checkAnswer('button { background-color: #ff5733; }')">Opção 3: button { background-color: #ff5733; }</button>
+            </div>
+            <p v-if="isCorrect" class="success-message">Parabéns! Você corrigiu o erro.</p>
+            <button v-if="isCorrect" @click="nextChapter">Próximo Capítulo</button>
+            <p v-else-if="showError" class="error-message">Tente novamente! Aqui vai uma dica: Verifique se você usou o código hexadecimal correto para a cor desejada.</p>
+        </div>
+    </div>
+</div>
+
+<script src="JavaScript/Capitulo3.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 5 - MegaCorp</title>
+    <link rel="stylesheet" href="Css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+</head>
+<body id="Capitulo5">
+<div id="app" @keydown.enter="nextDialogue" tabindex="0">
+    <div id="chapter-container">
+        <h2>Capítulo 5: A Logo que Não Aparece</h2>
+
+        <div id="narrator-box" v-if="!isChallengeActive && !isCharacterDialogueEnd">
+            <p id="narrator-text">{{ currentNarratorDialogue }}</p>
+        </div>
+
+        <div id="character-box" v-if="!isChallengeActive && isCharacterDialogueEnd">
+            <p id="character-dialogue"><strong>Sr. Harrison:</strong> "{{ currentHarrisonDialogue }}"</p>
+        </div>
+
+        <div id="character-box" v-if="isChallengeActive">
+            <p id="character-dialogue"><strong>Ethan:</strong> "{{ currentEthanDialogue }}"</p>
+        </div>
+
+        <div id="challenge-box" v-if="isChallengeActive">
+            <p><strong>Desafio:</strong> Corrigir o caminho da imagem da logo.</p>
+            <div id="code-box">
+                <pre>&lt;img src="images/logo.img"&gt;</pre>
+            </div>
+            <div v-for="(option, index) in answerOptions" :key="index">
+                <button @click="checkAnswer(option)">{{ option }}</button>
+            </div>
+            <p v-if="isCorrect" class="success-message">Parabéns! Você corrigiu o erro.</p>
+            <button v-if="isCorrect" @click="nextChapter">Próximo Capítulo</button>
+            <p v-else-if="showError" class="error-message">Tente novamente! O código ainda contém um erro. Dica: A imagem deve ter a extensão ".png".</p>
+        </div>
+    </div>
+</div>
+
+<script src="JavaScript/Capitulo5.js"></script>
+</body>
+</html>

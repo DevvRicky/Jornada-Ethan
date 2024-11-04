@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+        <html lang="pt-br">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Capítulo 4 - MegaCorp</title>
+    <link rel="stylesheet" href="Css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+</head>
+<body id="Capitulo4">
+<div id="app" @keydown.enter="nextDialogue" tabindex="0">
+    <div id="chapter-container">
+        <h2>Capítulo 4: O Mistério do Texto Invisível</h2>
+
+        <div id="narrator-box" v-if="!isChallengeActive && !isCharacterDialogueEnd">
+            <p id="narrator-text">{{ currentNarratorDialogue }}</p>
+        </div>
+
+        <div id="character-box" v-if="!isChallengeActive && isCharacterDialogueEnd">
+            <p id="character-dialogue"><strong>Sr. Harrison:</strong> "{{ currentHarrisonDialogue }}"</p>
+        </div>
+
+        <div id="character-box" v-if="isChallengeActive">
+            <p id="character-dialogue"><strong>Ethan:</strong> "{{ currentEthanDialogue }}"</p>
+        </div>
+
+        <div id="challenge-box" v-if="isChallengeActive">
+            <p><strong>Desafio:</strong> Corrigir a cor do texto abaixo para que ele fique visível.</p>
+            <div id="code-box">
+                <pre>.hidden-text { color: #ffffff; background-color: #ffffff; }</pre>
+            </div>
+            <!-- Opções de resposta -->
+            <div>
+                <button @click="checkAnswer('.hidden-text { color: #ffffff; background-color: #000000; }')">Opção 1: .hidden-text { color: #ffffff; background-color: #000000; }</button>
+                <button @click="checkAnswer('.hidden-text { color: #000000; background-color: #ffffff; }')">Opção 2: .hidden-text { color: #000000; background-color: #ffffff; }</button>
+                <button @click="checkAnswer('.hidden-text { color: #0000ff; background-color: #ffffff; }')">Opção 3: .hidden-text { color: #0000ff; background-color: #ffffff; }</button>
+            </div>
+            <p v-if="isCorrect" class="success-message">Parabéns! Você corrigiu o erro.</p>
+            <button v-if="isCorrect" @click="nextChapter">Próximo Capítulo</button>
+            <p v-else-if="showError" class="error-message">Tente novamente! Aqui vai uma dica: Verifique se você usou uma cor que contrasta com o fundo.</p>
+        </div>
+    </div>
+</div>
+
+<script src="JavaScript/Capitulo4.js"></script>
+</body>
+</html>

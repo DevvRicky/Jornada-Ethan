@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 2 - MegaCorp</title>
+    <link rel="stylesheet" href="Css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+</head>
+<body id = "Capitulo2">
+<div id="app" @keydown.enter="nextDialogue" tabindex="0">
+    <div id="chapter-container">
+        <h2>Capítulo 2: O Design Desalinhado</h2>
+
+        <div id="narrator-box" v-if="!isChallengeActive && !isCharacterDialogueEnd">
+            <p id="narrator-text">{{ currentNarratorDialogue }}</p>
+        </div>
+
+        <div id="character-box" v-if="!isChallengeActive && isCharacterDialogueEnd">
+            <p id="character-dialogue"><strong>Sr. Harrison:</strong> "{{ currentHarrisonDialogue }}"</p>
+        </div>
+
+        <div id="character-box" v-if="isChallengeActive">
+            <p id="character-dialogue"><strong>Ethan:</strong> "{{ currentEthanDialogue }}"</p>
+        </div>
+
+        <div id="challenge-box" v-if="isChallengeActive">
+            <p><strong>Desafio:</strong> Corrigir o CSS para centralizar a div abaixo.</p>
+            <div id="code-box">
+                <pre>.div-container { width: 80%; background-color: #f0f0f0; }</pre>
+            </div>
+            <!-- Opções de resposta -->
+            <div>
+                <button @click="checkAnswer('.div-container { width: 80%; }')">Opção 1: .div-container { width: 80%; }</button>
+                <button @click="checkAnswer('.div-container { width: 80%; background-color: #f0f0f0; margin: 0 auto; }')">Opção 2: .div-container { width: 80%; background-color: #f0f0f0; margin: 0 auto; }</button>
+                <button @click="checkAnswer('.div-container { text-align: center; }')">Opção 3: .div-container { text-align: center; }</button>
+            </div>
+            <p v-if="isCorrect" class="success-message">Parabéns! Você corrigiu o erro.</p>
+            <button v-if="isCorrect" @click="nextChapter">Próximo Capítulo</button>
+            <p v-else-if="showError" class="error-message">Tente novamente! Aqui vai uma dica: Verifique se você adicionou a propriedade de margem correta para centralizar.</p>
+        </div>
+    </div>
+</div>
+
+<script src="JavaScript/Capitulo2.js"></script>
+</body>
+</html>

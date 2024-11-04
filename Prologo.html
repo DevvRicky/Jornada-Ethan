@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prólogo - MegaCorp</title>
+    <link rel="stylesheet" href="Css/Prologo.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+</head>
+<body>
+<div id="app">
+    <div id="chapter-container">
+        <h2>Prólogo: O Primeiro Dia</h2>
+
+        <div id="narrator-box" v-if="!isNarratorDialogueEnd">
+            <p id="narrator-text">{{ currentNarratorDialogue }}</p>
+        </div>
+
+        <div id="character-box" v-if="isNarratorDialogueEnd && !isCharacterDialogueEnd">
+            <div v-if="currentCharacterDialogue === 'harrison'">
+                <p><strong>Sr. Harrison:</strong> "{{ harrisonDialogue }}"</p>
+            </div>
+            <div v-if="currentCharacterDialogue === 'ethan'">
+                <p><strong>Ethan:</strong> "{{ ethanDialogue }}"</p>
+            </div>
+        </div>
+
+        <div v-if="isEndOfStory" id="next-chapter-message">
+            <p class="success-message">Você completou o prólogo! Pronto para continuar?</p>
+            <button @click="goToNextChapter">Próximo Capítulo</button>
+        </div>
+
+    </div>
+</div>
+
+<script src="JavaScript/Prologo.js"></script>
+</body>
+</html>

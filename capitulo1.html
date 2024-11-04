@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 1 - MegaCorp</title>
+    <link rel="stylesheet" href="Css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+</head>
+<body id = "Capitulo1">
+<div id="app" @keydown.enter="nextDialogue" tabindex="0">
+    <div id="chapter-container">
+        <h2>Capítulo 1: O Mistério do Título Perdido</h2>
+
+        <div id="narrator-box" v-if="!isEndOfDialogue">
+            <p id="narrator-text">{{ currentNarratorDialogue }}</p>
+        </div>
+
+        <div id="character-box" v-if="isEndOfDialogue">
+            <p id="character-dialogue"><strong>Ethan:</strong> "{{ currentCharacterDialogue }}"</p>
+        </div>
+
+        <div id="challenge-box" v-if="isChallengeActive">
+            <p><strong>Desafio:</strong> Corrigir o erro de sintaxe no HTML abaixo.</p>
+            <div id="code-box">
+                <pre>&lt;h1 Welcome to MegaCorp</pre>
+            </div>
+            <!-- Opções de resposta -->
+            <div>
+                <button @click="checkAnswer('<h1> Welcome to MegaCorp </h1>')">Opção 1: &lt;h1&gt; Welcome to MegaCorp &lt;/h1&gt;</button>
+                <button @click="checkAnswer('<h1> MegaCorp </h1>')">Opção 2: &lt;h1&gt; MegaCorp &lt;/h1&gt;</button>
+                <button @click="checkAnswer('<h1>Bem-vindo à MegaCorp</h1>')">Opção 3: &lt;h1&gt;Bem-vindo à MegaCorp&lt;/h1&gt;</button>
+            </div>
+            <p v-if="isCorrect" class="success-message">Parabéns! Você corrigiu o erro.</p>
+            <button v-if="isCorrect" @click="nextChapter">Próximo Capítulo</button>
+            <p v-else-if="showError" class="error-message">Tente novamente! Aqui vai uma dica: Verifique se você usou as tags corretamente.</p>
+        </div>
+    </div>
+</div>
+<script src="JavaScript/Capitulo1.js"></script>
+</body>
+</html>
