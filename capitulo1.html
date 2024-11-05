@@ -28,8 +28,8 @@
             <!-- Opções de resposta -->
             <div>
                 <button @click="checkAnswer('<h1> Welcome to MegaCorp </h1>')">Opção 1: &lt;h1&gt; Welcome to MegaCorp &lt;/h1&gt;</button>
-                <button @click="checkAnswer('<h1 MegaCorp </h1>')">Opção 2: &lt;h1; MegaCorp &lt;/h1&gt;</button>
-                <button @click="checkAnswer('<h1>Bem-vindo à MegaCorp<h1>')">Opção 3: &lt;h1&gt;Bem-vindo à MegaCorp&lt;h1&gt;</button>
+                <button @click="checkAnswer('<h1 Welcome to MegaCorp </h1>')">Opção 2: &lt;h1; Welcome to MegaCorp &lt;/h1&gt;</button>
+                <button @click="checkAnswer('<h1> Welcome to MegaCorp <h1>')">Opção 3: &lt;h1&gt;Welcome to MegaCorp&lt;h1&gt;</button>
             </div>
             <p v-if="isCorrect" class="success-message">Parabéns! Você corrigiu o erro.</p>
             <button v-if="isCorrect" @click="nextChapter">Próximo Capítulo</button>
