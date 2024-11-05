@@ -55,7 +55,7 @@ const app = Vue.createApp({
             }
         },
         nextChapter() {
-            window.location.href = "Creditos.html";
+            window.location.href = "creditos.html";
         }
     },
     mounted() {
